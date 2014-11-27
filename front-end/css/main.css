@@ -63,26 +63,23 @@
   z-index: 1;
   float: left;
   width: 40%;
+  margin: 0;
   padding: 20px 10px;
   box-sizing: border-box;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
 }
 .umg_body-listLi {
-  position: relative;
-  float: left;
-  clear: left;
   padding: 4px 10px;
+  border-top: 1px solid #eeeeee;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
   box-sizing: border-box;
-  background: #fff;
+  font-size: 16px;
 }
-.umg_body-listLi:hover {
-  z-index: 1;
-  max-width: none;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+.umg_body-listLi:first-child {
+  border-top: none;
 }
 .umg_body-answer {
   float: right;
@@ -101,12 +98,44 @@
 .umg_body-answerItem {
   display: block;
   margin: 10px 0;
+  font-size: 16px;
 }
 .umg_body-controls {
   text-align: justify;
+}
+.umg_body-controls .umg_button {
+  margin-bottom: 10px;
 }
 .umg_body-controls:after {
   content: "";
   display: inline-block;
   width: 100%;
+}
+@media (max-width: 500px) {
+  .umg_body-list, .umg_body-answer {
+    float: none;
+    width: auto;
+    overflow: hidden;
+  }
+  .umg_body-listLi {
+    float: left;
+    width: 50%;
+    border: none;
+    font-size: 14px;
+  }
+  .umg_body-answerItem {
+    font-size: 14px;
+    margin: 8px 0;
+  }
+  .umg_body-answerCaption {
+    display: none;
+  }
+  .umg_body-answer {
+    padding: 0 10px;
+  }
+}
+@media (max-width: 380px) {
+  .umg_body-controls .umg_button {
+    display: block;
+  }
 }

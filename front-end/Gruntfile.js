@@ -7,7 +7,7 @@ module.exports = function(grunt) {
                     style: 'expanded'
                 },
                 files: {
-                    'css/main.css': 'scss/main.scss'
+                    'css/main_unprefixed.css': 'scss/main.scss'
                 }
             }
         },
@@ -22,9 +22,10 @@ module.exports = function(grunt) {
         },
         autoprefixer: {
             options: {
+                browsers: ['last 5 versions', 'ie 8', 'ie 9', '> 1%', 'Opera 12.1']
             },
             task: {
-                src: 'css/main.css',
+                src: 'css/main_unprefixed.css',
                 dest: 'css/main.css'
             }
         }
