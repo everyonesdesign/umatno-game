@@ -1,2 +1,4 @@
 .idea/
 lib/
+front-end/bower_components
+front-end/node_modules
