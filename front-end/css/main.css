@@ -1,4 +1,112 @@
+.umg_body:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.umg_container {
+  margin: auto;
+  line-height: 1.3;
+}
+.umg_container .jq-radio {
+  display: inline-block;
+  vertical-align: middle;
+  width: 25px;
+  height: 25px;
+  margin: -2px 10px 0 0;
+  background: no-repeat -25px 0 url("../img/radio.png");
+}
+.umg_container .jq-radio.checked {
+  background-position: 0 0;
+}
+.umg_button {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px 40px;
+  text-decoration: none;
+  cursor: pointer;
+  background: #f9ba00;
+  color: #fff;
+}
+.umg_button:hover {
+  background: #efb200;
+}
+.umg_button--secondary {
+  background: black;
+}
+.umg_button--secondary:hover {
+  background: #1a1a1a;
+}
+.umg_button--disabled {
+  background: #888888;
+  cursor: not-allowed;
+}
+.umg_progress {
+  margin: 10px 0 20px;
+}
 .umg_progress-caption {
   font-size: 14px;
   color: #888888;
+}
+.umg_progress-bar {
+  height: 5px;
+  margin: 4px 0;
+  background: #888888;
+}
+.umg_progress-barInner {
+  float: left;
+  height: 5px;
+  background: #f9ba00;
+}
+.umg_body-list {
+  position: relative;
+  z-index: 1;
+  float: left;
+  width: 40%;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+.umg_body-listLi {
+  position: relative;
+  float: left;
+  clear: left;
+  padding: 4px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+}
+.umg_body-listLi:hover {
+  z-index: 1;
+  max-width: none;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+.umg_body-answer {
+  float: right;
+  width: 60%;
+  padding-left: 36px;
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+.umg_body-answerCaption {
+  font-size: 16px;
+  color: #888888;
+}
+.umg_body-answerList {
+  margin: 20px 0;
+}
+.umg_body-answerItem {
+  display: block;
+  margin: 10px 0;
+}
+.umg_body-controls {
+  text-align: justify;
+}
+.umg_body-controls:after {
+  content: "";
+  display: inline-block;
+  width: 100%;
 }
