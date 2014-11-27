@@ -17,6 +17,7 @@ $plugin_path = plugin_dir_path( __FILE__ );
 //loading classes
 require_once($plugin_path."classes/Umg_table_manager.php");
 require_once($plugin_path."classes/Umg_file_parser.php");
+require_once($plugin_path."classes/Umg_game_manager.php");
 
 //creating instance of table for game 'guess film by actors list'
 $films_table_name = $wpdb->prefix.'umg_films';
@@ -45,6 +46,24 @@ function umg_parse_data() {
     $films_table->parseFile();
 }
 register_activation_hook( __FILE__, 'umg_parse_data' );
+
+/*
+ *
+ * SHORTCODES
+ *
+ */
+
+function umg_activate_game($attrs) {
+    if ($attrs['name'] == "films") {
+        global $films_table;
+        $game = new Umg_game_manager($films_table);
+    } elseif ($attrs['name'] == "actors") {
+        //TODO: write this
+    }
+    $markup = $game->getMarkup();
+    return $markup;
+}
+add_shortcode('game', 'umg_activate_game');
 
 
 
