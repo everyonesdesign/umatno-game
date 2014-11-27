@@ -2,11 +2,16 @@
 
 class Umg_file_parser {
 
+    private $filename;
 
-    public static function parse($filename, $table_name) {
+    function Umg_file_parser($filename) {
+        $this->filename = $filename;
+    }
+
+    public function parse($table) {
         global $plugin_path;
 
-        $file_content = file($filename);
+        $file_content = file($this->filename);
         $line_type = 0;
 
         //default values
@@ -21,7 +26,7 @@ class Umg_file_parser {
                 $value = str_replace("@@-@@", "", $line);
                 $line_type++;
             } elseif ($line_type == 2) {
-                Umg_db_manager::setItem($table_name, $name, $value);
+                $table->setItem($name, $value);
                 $line_type=0;
             }
         }

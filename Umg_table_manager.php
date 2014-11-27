@@ -1,12 +1,18 @@
 <?php
 
-class Umg_db_manager {
+class Umg_table_manager {
 
-    public static function createTable($table_name) {
+    private $table_name, $parser;
 
+    function Umg_table_manager($table_name, $filename) {
+        $this->table_name = $table_name;
+        $this->parser = new Umg_file_parser($filename);
+    }
+
+    public function createTable() {
         global $wpdb;
         $charset_collate = $wpdb->get_charset_collate();
-        $sql = "CREATE TABLE $table_name (
+        $sql = "CREATE TABLE ".$this->table_name." (
           id mediumint(9) NOT NULL AUTO_INCREMENT,
           name text NOT NULL,
           value text NOT NULL,
@@ -16,18 +22,18 @@ class Umg_db_manager {
         dbDelta($sql);
     }
 
-    public static function resetTable($table_name) {
+    public function resetTable() {
         global $wpdb;
         $charset_collate = $wpdb->get_charset_collate();
-        $sql = "TRUNCATE TABLE $table_name";
+        $sql = "TRUNCATE TABLE ".$this->table_name;
         require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
         $wpdb->query($sql);
     }
 
-    public static function setItem($table_name, $name, $value) {
+    public function setItem($name, $value) {
         global $wpdb;
         $wpdb->insert(
-            $table_name,
+            $this->table_name,
             array(
                 'name' => $name,
                 'value' => $value
@@ -35,13 +41,23 @@ class Umg_db_manager {
         );
     }
 
-    public static function getItem($table_name, $id) {
+    public function getItem($id) {
         global $wpdb;
         $results = $wpdb->get_results(
-            "SELECT * FROM $table_name WHERE id = $id",
+            "SELECT * FROM ".$this->table_name." WHERE id = $id;",
             OBJECT
         );
         return $results;
+    }
+
+    public function getNumberOfRows() {
+        global $wpdb;
+        $result = $wpdb->query("SELECT COUNT(*) FROM ".$this->table_name.";");
+        return $result;
+    }
+
+    public function parseFile() {
+        $this->parser->parse($this);
     }
 
 }
