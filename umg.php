@@ -9,18 +9,27 @@
 
 defined('ABSPATH') or die("Only WP plugin");
 
+//adding globals
 global $wpdb;
 global $plugin_path;
 $plugin_path = plugin_dir_path( __FILE__ );
 
-require_once($plugin_path."Umg_table_manager.php");
-require_once($plugin_path."Umg_file_parser.php");
+//loading classes
+require_once($plugin_path."classes/Umg_table_manager.php");
+require_once($plugin_path."classes/Umg_file_parser.php");
 
-//guess film by actors list
+//creating instance of table for game 'guess film by actors list'
 $films_table_name = $wpdb->prefix.'umg_films';
 $films_file = $plugin_path.'data/films-data.txt';
 global $films_table;
 $films_table = new Umg_table_manager($films_table_name, $films_file);
+
+
+/*
+ *
+ * ACTIVATION HOOKS
+ *
+ */
 
 //creating a db table if there's no
 function umg_install() {
