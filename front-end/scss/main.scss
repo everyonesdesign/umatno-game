@@ -1,0 +1,27 @@
+.umg { //prefix our styles
+
+  //colors
+  $main: #f9ba00;
+  $text: #444;
+  $dimmed: #888;
+
+
+
+  &_progress {
+    &-caption {
+      font-size: 14px;
+      color: $dimmed;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+}
+
