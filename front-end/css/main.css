@@ -1,4 +1,4 @@
-.umg_body:after {
+.umg_body:after, .umg_body-answerList:after {
   content: "";
   display: table;
   clear: both;
@@ -9,11 +9,10 @@
   line-height: 1.3;
 }
 .umg_container .jq-radio {
-  display: inline-block;
-  vertical-align: middle;
+  float: left;
   width: 25px;
   height: 25px;
-  margin: -2px 10px 0 0;
+  margin: -2px 0 0 -40px;
   background: no-repeat -25px 0 url("../img/radio.png");
 }
 .umg_container .jq-radio.checked {
@@ -84,7 +83,7 @@
 .umg_body-answer {
   float: right;
   width: 60%;
-  padding-left: 36px;
+  padding-left: 40px;
   padding-top: 20px;
   box-sizing: border-box;
 }
@@ -97,8 +96,10 @@
 }
 .umg_body-answerItem {
   display: block;
-  margin: 10px 0;
+  margin: 14px 0;
+  padding-left: 42px;
   font-size: 16px;
+  box-sizing: border-box;
 }
 .umg_body-controls {
   text-align: justify;
@@ -111,7 +112,7 @@
   display: inline-block;
   width: 100%;
 }
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .umg_body-list, .umg_body-answer {
     float: none;
     width: auto;
@@ -123,19 +124,34 @@
     border: none;
     font-size: 14px;
   }
+  .umg_body-answerList {
+    margin-bottom: 10px;
+  }
   .umg_body-answerItem {
+    float: left;
+    width: 50%;
     font-size: 14px;
     margin: 8px 0;
+    padding: 0 10px 0 46px;
   }
   .umg_body-answerCaption {
     display: none;
   }
   .umg_body-answer {
-    padding: 0 10px;
+    padding: 0;
+  }
+  .umg_body-controls {
+    padding: 10px;
   }
 }
 @media (max-width: 380px) {
   .umg_body-controls .umg_button {
     display: block;
+  }
+  .umg_body-answerItem {
+    float: none;
+    width: auto;
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
 }
