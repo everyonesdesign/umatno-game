@@ -60,7 +60,14 @@
   }
 
   &_progress {
-    margin: 10px 0 20px;
+    height: 60px;
+    opacity: 1;
+    overflow: hidden;
+    transition-duration: .4s;
+    &.ng-hide {
+      opacity: 0;
+      height: 0;
+    }
     &-caption {
       font-size: 14px;
       color: $dimmed;
@@ -74,20 +81,35 @@
       float: left;
       height: 5px;
       background: $main;
+      //transition-duration: .2s;
     }
   }
 
   &_body {
     @extend %clearfix;
-    &.ng-enter {
-      transition-duration: .2s;
+    position: relative;
+    top: 0;
+    opacity: 1;
+    transition-duration: .6s;
+    &.ng-hide {
+      top: 20px;
+      transition-duration: 0;
       opacity: 0;
-      &.ng-enter-active {
-        opacity: 1;
+      .umg_body-list {
+        top: -20px;
+        left: -20px;
+        transition-duration: 0;
+      }
+      .umg_body-answer {
+        opacity: 0;
+        transition-duration: 0;
+        transition-delay: 0;
       }
     }
     &-list {
       position: relative;
+      top: 0;
+      left: 0;
       z-index: 1;
       float: left;
       width: 40%;
@@ -95,6 +117,7 @@
       padding: 20px 10px;
       box-sizing: border-box;
       box-shadow: 0 0 3px rgba(0,0,0,.4);
+      transition-duration: .6s;
     }
     &-listLi {
       padding: 4px 10px;
@@ -119,6 +142,9 @@
 //      }
     }
     &-answer {
+      opacity: 1;
+      transition-duration: .8s;
+      transition-delay: .4s;
       float: right;
       width: 60%;
       padding-left: 40px;
@@ -154,11 +180,21 @@
   }
 
   &_results {
+    opacity: 1;
+    transition-duration: .6s;
+    &.ng-hide {
+      //top: 20px;
+      //transition-duration: 0;
+      opacity: 0;
+    }
     &-table {
       margin-top: 10px;
       border-collapse: collapse;
       box-shadow: 0 0 4px rgba(0,0,0,.4);
       font-size: 14px;
+      opacity: 1;
+      transition-duration: .4s;
+      &.ng-hide {opacity: 0;}
       th {
         background: $black;
         color: #fff;
@@ -194,6 +230,7 @@
     &_body-list,
     &_body-answer {
       float: none;
+      left: 0 !important;
       width: auto;
       overflow: hidden;
     }

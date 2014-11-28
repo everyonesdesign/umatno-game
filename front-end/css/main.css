@@ -49,7 +49,15 @@
   cursor: not-allowed;
 }
 .umg_progress {
-  margin: 10px 0 20px;
+  height: 60px;
+  opacity: 1;
+  overflow: hidden;
+  -webkit-transition-duration: .4s;
+          transition-duration: .4s;
+}
+.umg_progress.ng-hide {
+  opacity: 0;
+  height: 0;
 }
 .umg_progress-caption {
   font-size: 14px;
@@ -65,16 +73,36 @@
   height: 5px;
   background: #f9ba00;
 }
-.umg_body.ng-enter {
-  -webkit-transition-duration: .2s;
-          transition-duration: .2s;
+.umg_body {
+  position: relative;
+  top: 0;
+  opacity: 1;
+  -webkit-transition-duration: .6s;
+          transition-duration: .6s;
+}
+.umg_body.ng-hide {
+  top: 20px;
+  -webkit-transition-duration: 0;
+          transition-duration: 0;
   opacity: 0;
 }
-.umg_body.ng-enter.ng-enter-active {
-  opacity: 1;
+.umg_body.ng-hide .umg_body-list {
+  top: -20px;
+  left: -20px;
+  -webkit-transition-duration: 0;
+          transition-duration: 0;
+}
+.umg_body.ng-hide .umg_body-answer {
+  opacity: 0;
+  -webkit-transition-duration: 0;
+          transition-duration: 0;
+  -webkit-transition-delay: 0;
+          transition-delay: 0;
 }
 .umg_body-list {
   position: relative;
+  top: 0;
+  left: 0;
   z-index: 1;
   float: left;
   width: 40%;
@@ -82,6 +110,8 @@
   padding: 20px 10px;
   box-sizing: border-box;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  -webkit-transition-duration: .6s;
+          transition-duration: .6s;
 }
 .umg_body-listLi {
   padding: 4px 10px;
@@ -97,6 +127,11 @@
   border-top: none;
 }
 .umg_body-answer {
+  opacity: 1;
+  -webkit-transition-duration: .8s;
+          transition-duration: .8s;
+  -webkit-transition-delay: .4s;
+          transition-delay: .4s;
   float: right;
   width: 60%;
   padding-left: 40px;
@@ -128,11 +163,25 @@
   display: inline-block;
   width: 100%;
 }
+.umg_results {
+  opacity: 1;
+  -webkit-transition-duration: .6s;
+          transition-duration: .6s;
+}
+.umg_results.ng-hide {
+  opacity: 0;
+}
 .umg_results-table {
   margin-top: 10px;
   border-collapse: collapse;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
   font-size: 14px;
+  opacity: 1;
+  -webkit-transition-duration: .4s;
+          transition-duration: .4s;
+}
+.umg_results-table.ng-hide {
+  opacity: 0;
 }
 .umg_results-table th {
   background: black;
@@ -167,6 +216,7 @@
 @media (max-width: 600px) {
   .umg_body-list, .umg_body-answer {
     float: none;
+    left: 0 !important;
     width: auto;
     overflow: hidden;
   }

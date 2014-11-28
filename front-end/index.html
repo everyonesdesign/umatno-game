@@ -55,7 +55,7 @@
 
     <div class="umg_container container" ng-app="game" ng-controller="gameController as gc">
 
-        <div class="umg_progress">
+        <div class="umg_progress" ng-show="!gc.finished">
             <div class="umg_progress-caption">Вопрос {{gc.questionNumber+1}} из {{gc.questions.length}}</div>
             <div class="umg_progress-bar">
                 <div class="umg_progress-barInner" ng-style="{width: (gc.questionNumber+1)/gc.questions.length*100+'%'}"></div>
