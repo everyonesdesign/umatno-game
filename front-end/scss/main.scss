@@ -226,6 +226,12 @@
     }
   }
 
+  &_soc {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 12px;
+  }
+
   @media (max-width: 600px) {
     &_body-list,
     &_body-answer {

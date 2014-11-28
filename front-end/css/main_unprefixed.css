@@ -202,6 +202,11 @@
 .umg_results-toggle a {
   color: inherit;
 }
+.umg_soc {
+  padding-top: 20px;
+  text-align: center;
+  font-size: 12px;
+}
 @media (max-width: 600px) {
   .umg_body-list, .umg_body-answer {
     float: none;

@@ -1,8 +1,19 @@
+var YaShareInstance;
+
+if (location.protocol!="file:") {
+    YaShareInstance = new Ya.share({
+        element: 'umg_soc-inner',
+        elementStyle: {
+            type: "icon"
+        }
+    });
+}
+
 var game = angular.module("game", ["ngAnimate"]);
 
 game.value("data", umg_data);
 
-game.controller("gameController", ["$scope", "data", function($scope, data) {
+game.controller("gameController", ["$scope", "data", "correctFilter", function($scope, data, correctFilter) {
 
     var $this = this;
     $this.questionNumber = 0;
@@ -17,6 +28,9 @@ game.controller("gameController", ["$scope", "data", function($scope, data) {
     };
 
     $this.countResults = function() {
+        var correctCount,
+            socialTitle;
+
         if ($this.questions[$this.questionNumber].userAnswer==undefined) {
             return;
         }
@@ -26,6 +40,13 @@ game.controller("gameController", ["$scope", "data", function($scope, data) {
                     $this.questions[i].correct = j;
                 }
             }
+        }
+        correctCount = correctFilter($this.questions).length;
+        socialTitle = document.title + ". Мой результат игры - " + correctCount + " из " + $this.questions.length + " вопросов";
+        try {
+            YaShareInstance.updateShareLink(document.URL, socialTitle);
+        } catch(e) {
+            console.warn("Social networks are not initialized");
         }
         $this.finished = true;
     };
@@ -40,7 +61,6 @@ game.filter("correct", function() {
                 result.push(input[i]);
             }
         }
-        console.dir(result);
         return result;
     }
 });
@@ -51,7 +71,7 @@ game.filter("join", function() {
     }
 });
 
-game.filter('first', function () {
+game.filter("first", function () {
     return function(input, number) {
         var result = [];
         for (var i= 0; i<number; i++) {
@@ -60,3 +80,6 @@ game.filter('first', function () {
         return result;
     }
 });
+
+
+
