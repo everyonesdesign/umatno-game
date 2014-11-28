@@ -11,18 +11,20 @@ class Umg_game_manager {
     }
 
     public function getMarkup() {
-        return "markup";
+
+        //FIXME: for test
+        return $this->itemsCount;
     }
 
-    public function getItems() {
+    public function addVariantsToQuestion() {
 
-        //TODO: this is not completely written!!!
+    }
 
+    public function getQuestionItems() {
         $indexes = $this->getRandomIndexes();
         $items = array();
 
         foreach ($indexes as $index) {
-            //in db indexes start from 1, not 0
             $id = $index+1;
             $item = $this->table->getItem($id);
             array_push($items, $item);

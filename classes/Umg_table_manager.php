@@ -52,8 +52,8 @@ class Umg_table_manager {
 
     public function getNumberOfRows() {
         global $wpdb;
-        $result = $wpdb->query("SELECT COUNT(*) FROM ".$this->table_name.";");
-        return $result;
+        $result = $wpdb->get_results("SELECT COUNT(*) FROM ".$this->table_name.";", ARRAY_N);
+        return $result[0][0];
     }
 
     public function parseFile() {
