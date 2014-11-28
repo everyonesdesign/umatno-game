@@ -31,6 +31,9 @@ class Umg_questions_manager {
             array_push($questions[$key]->variants, $questions[$key]->name);
             //mix variants
             shuffle($questions[$key]->variants);
+            //remote id and name properties
+            unset($questions[$key]->id);
+            unset($questions[$key]->name);
         }
         return $questions;
     }
