@@ -13,8 +13,8 @@ class Umg_game_manager {
     public function getMarkup() {
         //FIXME: for test
         $questions = $this->getQuestions();
-//        $questions_with_variants = $this->addVariantsToQuestions($questions);
-        return var_dump($questions);
+        $questions_with_variants = $this->addVariantsToQuestions($questions);
+        return var_dump($questions_with_variants);
     }
 
     public function generateQuestionsEntities() {
@@ -23,36 +23,40 @@ class Umg_game_manager {
 
     public function addVariantsToQuestions($questions) {
 
-        foreach ($questions as $question) {
-            $id = $question[0]["id"];
-
-            $variants = getRandomVariants($id);
-
-            $question["variants"] = $variants;
-
-            function getRandomVariants($id) {
-                $helperArray = array_pad(array(), $this->itemsCount, 0);
-                $indexesArray = array_rand($helperArray, 3);
-                //if same id recursive call again
-                if (in_array($id, $indexesArray)) {
-                    getRandomVariants($id);
-                } else {
-                    return $indexesArray;
-                }
-            }
-
+        foreach ($questions as $key => $question) {
+            $id = $question[0]->id;
+            $variants = $this->fetchVariantsData($id);
+            $questions[$key][0]->variants = $variants;
         }
+        return $questions[0];
+    }
 
-        return $questions;
+    public function fetchVariantsData($id) {
+        $variant_ids = $this->getRandomVariantsIds($id);
+        $results = array();
+        foreach ($variant_ids as $variant_id) {
+            $item = $this->table->getItem($variant_id+1);
+            array_push($results, $item);
+        }
+        return $results;
+    }
 
+    public function getRandomVariantsIds($id) {
+        $helperArray = array_pad(array(), $this->itemsCount, 0);
+        $indexesArray = array_rand($helperArray, 3);
+        //if same id recursive call again
+        if (in_array($id, $indexesArray)) {
+            return $this->getRandomVariantsIds($id);
+        } else {
+            return $indexesArray;
+        }
     }
 
     public function getQuestions() {
         $indexes = $this->getQuestionsRandomIndexes();
         $questions = array();
         foreach ($indexes as $index) {
-            $id = $index+1;
-            $item = $this->table->getItem($id);
+            $item = $this->table->getItem($index+1);
             array_push($questions, $item);
         }
         return $questions;
@@ -63,6 +67,5 @@ class Umg_game_manager {
         $indexesArray = array_rand($helperArray, 10);
         return $indexesArray;
     }
-
 
 }
