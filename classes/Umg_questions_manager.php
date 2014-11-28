@@ -1,11 +1,11 @@
 <?php
 
-class Umg_game_manager {
+class Umg_questions_manager {
 
     private $table;
     private $itemsCount;
 
-    function Umg_game_manager($table) {
+    function Umg_questions_manager($table) {
         $this->table = $table;
         $this->itemsCount = $table->getNumberOfRows();
     }
