@@ -66,8 +66,7 @@
   background: #f9ba00;
 }
 .umg_body.ng-enter {
-  -webkit-transition-duration: .2s;
-          transition-duration: .2s;
+  transition-duration: .2s;
   opacity: 0;
 }
 .umg_body.ng-enter.ng-enter-active {

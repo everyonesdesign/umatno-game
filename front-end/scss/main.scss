@@ -79,6 +79,13 @@
 
   &_body {
     @extend %clearfix;
+    &.ng-enter {
+      transition-duration: .2s;
+      opacity: 0;
+      &.ng-enter-active {
+        opacity: 1;
+      }
+    }
     &-list {
       position: relative;
       z-index: 1;
