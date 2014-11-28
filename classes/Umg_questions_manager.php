@@ -12,13 +12,27 @@ class Umg_questions_manager {
 
     public function getMarkup() {
         //FIXME: for test
-        $questions = $this->getQuestions();
-        $questions_with_variants = $this->addVariantsToQuestions($questions);
-        return var_dump($questions_with_variants);
+        $questions = $this->constructQuestions();
+        return var_dump($questions);
     }
 
-    public function generateQuestionsEntities() {
+    public function constructQuestions() {
+        $questions = $this->getQuestions();
+        $questions = $this->addVariantsToQuestions($questions);
+        $questions = $this->addSecrecy($questions);
+        return $questions;
+    }
 
+    public function addSecrecy($questions) {
+        foreach ($questions as $key => $question) {
+            //add hash
+            $questions[$key]->hash = sha1($questions[$key]->name);
+            //add name to variants
+            array_push($questions[$key]->variants, $questions[$key]->name);
+            //mix variants
+            shuffle($questions[$key]->variants);
+        }
+        return $questions;
     }
 
     public function addVariantsToQuestions($questions) {
@@ -35,7 +49,7 @@ class Umg_questions_manager {
         $results = array();
         foreach ($variant_ids as $variant_id) {
             $item = $this->table->getItem($variant_id+1);
-            array_push($results, $item);
+            array_push($results, $item->name);
         }
         return $results;
     }
