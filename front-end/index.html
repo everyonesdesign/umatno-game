@@ -14,28 +14,28 @@
         var umg_data = {
           questions: [
               {
-                  actors: ["Пьер Ришар","Мишель Буке","Фабрис Греко","Жак Франсуа","Даниэль Секкальди","Шарль Жерар","Мишель Омон","Сьюзи Дайсон","Жерар Жюньо","Мишель Робен"],
+                  listItems: ["Пьер Ришар","Мишель Буке","Фабрис Греко","Жак Франсуа","Даниэль Секкальди","Шарль Жерар","Мишель Омон","Сьюзи Дайсон","Жерар Жюньо","Мишель Робен"],
                   answers: ["Неудержимые","Игрушка","Аватар","Черный лебедь"],
                   hash: "c4060d02f07366c9ee16dc76d2130bb8da0fda62",
                   correct: false,
                   userAnswer: undefined
               },
               {
-                  actors: ["Эдвард Нортон","Брэд Питт","Хелена Бонем Картер","Мит Лоаф","Зэк Гренье","Холт МакКэллани","Джаред Лето","Эйон Бэйли","Ричмонд Аркетт","Дэвид Эндрюс"],
+                  listItems: ["Эдвард Нортон","Брэд Питт","Хелена Бонем Картер","Мит Лоаф","Зэк Гренье","Холт МакКэллани","Джаред Лето","Эйон Бэйли","Ричмонд Аркетт","Дэвид Эндрюс"],
                   answers: ["Неудержимые","Бойцовский клуб","Аватар","Черный лебедь"],
                   hash: "f31acb809f99c81652c258821eca659cb1eeeb69",
                   correct: false,
                   userAnswer: undefined
               },
               {
-                  actors: ["Марлон Брандо","Аль Пачино","Джеймс Каан","Роберт Дювалл","Ричард С. Кастеллано","Дайан Китон","Талия Шайр","Джон Казале","Аль Леттьери","Стерлинг Хейден"],
+                  listItems: ["Марлон Брандо","Аль Пачино","Джеймс Каан","Роберт Дювалл","Ричард С. Кастеллано","Дайан Китон","Талия Шайр","Джон Казале","Аль Леттьери","Стерлинг Хейден"],
                   answers: ["Неудержимые","Игрушка","Аватар","Крестный отец"],
                   hash: "a8923c00dc64fd2f11f54e4f95adf2ba7121b0a3",
                   correct: false,
                   userAnswer: undefined
               },
               {
-                  actors: ["Майкл Дж. Фокс","Кристофер Ллойд","Лиа Томпсон","Криспин Гловер","Томас Ф. Уилсон","Клодия Уэллс","Марк МакКлюр","Уэнди Джо Спербер","Джордж ДиЧенцо","Фрэнсис Ли МакКейн"],
+                  listItems: ["Майкл Дж. Фокс","Кристофер Ллойд","Лиа Томпсон","Криспин Гловер","Томас Ф. Уилсон","Клодия Уэллс","Марк МакКлюр","Уэнди Джо Спербер","Джордж ДиЧенцо","Фрэнсис Ли МакКейн"],
                   answers: ["Назад в будущее","Игрушка","Аватар","Черный лебедь"],
                   hash: "bf9910476dd5ffc3c0b2298eab5ef5b9568262f3",
                   correct: false,
@@ -63,7 +63,7 @@
 
         <div class="umg_body" ng-repeat="question in gc.questions" ng-show="gc.questionNumber==$index">
             <ul class="umg_body-list">
-                <li class="umg_body-listLi" ng-repeat="actor in question.actors" title="{{actor}}">{{actor}}</li>
+                <li class="umg_body-listLi" ng-repeat="actor in question.listItems" title="{{actor}}">{{actor}}</li>
             </ul>
             <div class="umg_body-answer">
                 <div class="umg_body-answerCaption">— это актерский состав фильма...</div>
@@ -80,12 +80,31 @@
                     <div class="umg_button"
                          ng-class="{'umg_button--disabled': gc.questions[gc.questionNumber].userAnswer==undefined}"
                          ng-hide="gc.questionNumber+1==gc.questions.length"
-                         ng-click="gc.questionNumber=gc.questionNumber+1">Далее →</div>
+                         ng-click="gc.nextStep()">Далее →</div>
                     <div class="umg_button"
+                         ng-class="{'umg_button--disabled': gc.questions[gc.questionNumber].userAnswer==undefined}"
                          ng-show="gc.questionNumber+1==gc.questions.length"
-                         ng-click="alert('Завершено')">Завершить</div>
+                         ng-click="gc.countResults()">Завершить</div>
                 </div>
             </div>
+        </div>
+
+        <div class="umg_results">
+            <div class="umg_results-title">Вы ответили правильно на {{(gc.questions|correct).length}} из {{gc.questions.length}} вопросов</div>
+            <div class="umg_results-caption"></div>
+            <table>
+                <tr>
+                    <th>Актеры</th>
+                    <th>Вы ответили</th>
+                    <th>Правильный ответ</th>
+                </tr>
+                <tr ng-repeat="question in gc.questions">
+                    <td>{{question.listItems|join}}</td>
+                    <td>{{question.answers[question.userAnswer]}}</td>
+                    <td>{{question.answers[question.correct]}}</td>
+                </tr>
+            </table>
+
         </div>
 
     </div>
