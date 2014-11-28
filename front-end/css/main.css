@@ -8,24 +8,32 @@
   margin: auto;
   line-height: 1.3;
 }
-.umg_container .jq-radio {
+.umg_container input[type="radio"] {
+  display: none;
+}
+.umg_container .radio-view {
   float: left;
   width: 25px;
   height: 25px;
   margin: -2px 0 0 -40px;
   background: no-repeat -25px 0 url("../img/radio.png");
 }
-.umg_container .jq-radio.checked {
+.umg_container input[type="radio"]:checked + .radio-view {
   background-position: 0 0;
+}
+.umg_hidden {
+  visibility: hidden;
 }
 .umg_button {
   display: inline-block;
   vertical-align: middle;
-  padding: 10px 40px;
+  padding: 10px 20px;
   text-decoration: none;
   cursor: pointer;
   background: #f9ba00;
   color: #fff;
+  min-width: 100px;
+  text-align: center;
 }
 .umg_button:hover {
   background: #efb200;
@@ -37,7 +45,7 @@
   background: #1a1a1a;
 }
 .umg_button--disabled {
-  background: #888888;
+  background: #ddd !important;
   cursor: not-allowed;
 }
 .umg_progress {

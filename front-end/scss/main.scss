@@ -17,27 +17,33 @@
     margin: auto;
     line-height: 1.3;
 
-    .jq-radio {
+    input[type="radio"] {display: none;}
+    .radio-view {
       float: left;
       width: 25px;
       height: 25px;
       margin: -2px 0 0 -40px;
       background: no-repeat -25px 0 url("../img/radio.png");
-      &.checked {
-        background-position: 0 0;
-      }
     }
+    input[type="radio"]:checked + .radio-view {
+      background-position: 0 0;
+    }
+  }
 
+  &_hidden {
+    visibility: hidden;
   }
 
   &_button {
     display: inline-block;
     vertical-align: middle;
-    padding: 10px 40px;
+    padding: 10px 20px;
     text-decoration: none;
     cursor: pointer;
     background: $main;
     color: #fff;
+    min-width: 100px;
+    text-align: center;
     &:hover {
       background: darken($main, 2%);
     }
@@ -48,7 +54,7 @@
       }
     }
     &--disabled {
-      background: $dimmed;
+      background: #ddd !important;
       cursor: not-allowed;
     }
   }

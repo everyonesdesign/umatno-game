@@ -9,15 +9,37 @@
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="js/vendors.js"></script>
-    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
     <script>
-        var data = {
+        var umg_data = {
           questions: [
               {
                   actors: ["Пьер Ришар","Мишель Буке","Фабрис Греко","Жак Франсуа","Даниэль Секкальди","Шарль Жерар","Мишель Омон","Сьюзи Дайсон","Жерар Жюньо","Мишель Робен"],
                   answers: ["Неудержимые","Игрушка","Аватар","Черный лебедь"],
-                  hash: "",
-                  correct: null
+                  hash: "c4060d02f07366c9ee16dc76d2130bb8da0fda62",
+                  correct: false,
+                  userAnswer: undefined
+              },
+              {
+                  actors: ["Эдвард Нортон","Брэд Питт","Хелена Бонем Картер","Мит Лоаф","Зэк Гренье","Холт МакКэллани","Джаред Лето","Эйон Бэйли","Ричмонд Аркетт","Дэвид Эндрюс"],
+                  answers: ["Неудержимые","Бойцовский клуб","Аватар","Черный лебедь"],
+                  hash: "f31acb809f99c81652c258821eca659cb1eeeb69",
+                  correct: false,
+                  userAnswer: undefined
+              },
+              {
+                  actors: ["Марлон Брандо","Аль Пачино","Джеймс Каан","Роберт Дювалл","Ричард С. Кастеллано","Дайан Китон","Талия Шайр","Джон Казале","Аль Леттьери","Стерлинг Хейден"],
+                  answers: ["Неудержимые","Игрушка","Аватар","Крестный отец"],
+                  hash: "a8923c00dc64fd2f11f54e4f95adf2ba7121b0a3",
+                  correct: false,
+                  userAnswer: undefined
+              },
+              {
+                  actors: ["Майкл Дж. Фокс","Кристофер Ллойд","Лиа Томпсон","Криспин Гловер","Томас Ф. Уилсон","Клодия Уэллс","Марк МакКлюр","Уэнди Джо Спербер","Джордж ДиЧенцо","Фрэнсис Ли МакКейн"],
+                  answers: ["Назад в будущее","Игрушка","Аватар","Черный лебедь"],
+                  hash: "bf9910476dd5ffc3c0b2298eab5ef5b9568262f3",
+                  correct: false,
+                  userAnswer: undefined
               }
           ]
         };
@@ -30,42 +52,40 @@
 </head>
 <body>
 
-    <div class="umg_container container">
+    <div class="umg_container container" ng-app="game" ng-controller="gameController as gc">
 
         <div class="umg_progress">
-            <div class="umg_progress-caption">Вопрос 6 из 10</div>
+            <div class="umg_progress-caption">Вопрос {{gc.questionNumber+1}} из {{gc.questions.length}}</div>
             <div class="umg_progress-bar">
-                <div class="umg_progress-barInner" style="width: 90%"></div>
+                <div class="umg_progress-barInner" ng-style="{width: (gc.questionNumber+1)/gc.questions.length*100+'%'}"></div>
             </div>
         </div>
 
-        <div class="umg_body">
+        <div class="umg_body" ng-repeat="question in gc.questions" ng-show="gc.questionNumber==$index">
             <ul class="umg_body-list">
-                <li class="umg_body-listLi">Пьер Ришар</li>
-                <li class="umg_body-listLi">Мишель Буке</li>
-                <li class="umg_body-listLi">Фабрис Греко</li>
-                <li class="umg_body-listLi">Жак Франсуа</li>
-                <li class="umg_body-listLi" title="Даниэль Секкальди Очень-очень длинная фамилия">Даниэль Секкальди Очень-очень длинная фамилия</li>
-                <li class="umg_body-listLi">Шарль Жерар</li>
-                <li class="umg_body-listLi">Мишель Омон</li>
-                <li class="umg_body-listLi">Сьюзи Дайсон</li>
-                <li class="umg_body-listLi">Жерар Жюньо</li>
-                <li class="umg_body-listLi">Мишель Робен</li>
+                <li class="umg_body-listLi" ng-repeat="actor in question.actors" title="{{actor}}">{{actor}}</li>
             </ul>
             <div class="umg_body-answer">
                 <div class="umg_body-answerCaption">— это актерский состав фильма...</div>
                 <form class="umg_body-answerList">
-                    <label class="umg_body-answerItem"><input name="answer" type="radio">«Неудержимые»</label>
-                    <label class="umg_body-answerItem"><input name="answer" type="radio">«Игрушка»</label>
-                    <label class="umg_body-answerItem"><input name="answer" type="radio">«Аватар»</label>
-                    <label class="umg_body-answerItem"><input name="answer" type="radio">«Очень длинное название фильма для теста»</label>
+                    <label class="umg_body-answerItem" ng-repeat="answer in question.answers" >
+                        <input name="answer" type="radio" ng-value="{{$index}}" ng-model="gc.questions[gc.questionNumber].userAnswer">«{{answer}}»
+                        <span class="radio-view"></span>
+                    </label>
                 </form>
                 <div class="umg_body-controls">
-                    <div class="umg_button umg_button--secondary">← Назад</div>
-                    <div class="umg_button">Далее →</div>
+                    <div class="umg_button umg_button--secondary"
+                         ng-class="{'umg_hidden': !gc.questionNumber}"
+                         ng-click="gc.questionNumber=gc.questionNumber-1">← Назад</div>
+                    <div class="umg_button"
+                         ng-class="{'umg_button--disabled': gc.questions[gc.questionNumber].userAnswer==undefined}"
+                         ng-hide="gc.questionNumber+1==gc.questions.length"
+                         ng-click="gc.questionNumber=gc.questionNumber+1">Далее →</div>
+                    <div class="umg_button"
+                         ng-show="gc.questionNumber+1==gc.questions.length"
+                         ng-click="alert('Завершено')">Завершить</div>
                 </div>
             </div>
-
         </div>
 
     </div>
