@@ -24,11 +24,11 @@ class Umg_game_manager {
     public function addVariantsToQuestions($questions) {
 
         foreach ($questions as $key => $question) {
-            $id = $question[0]->id;
+            $id = $question->id;
             $variants = $this->fetchVariantsData($id);
-            $questions[$key][0]->variants = $variants;
+            $questions[$key]->variants = $variants;
         }
-        return $questions[0];
+        return $questions;
     }
 
     public function fetchVariantsData($id) {

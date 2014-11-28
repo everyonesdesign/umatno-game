@@ -47,7 +47,7 @@ class Umg_table_manager {
             "SELECT * FROM ".$this->table_name." WHERE id = $id;",
             OBJECT
         );
-        return $results;
+        return $results[0];
     }
 
     public function getNumberOfRows() {
