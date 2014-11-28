@@ -16,7 +16,7 @@ class Umg_game_manager {
 
     public function getItems() {
 
-        //TODO: this is now completely written!!!
+        //TODO: this is not completely written!!!
 
         $indexes = $this->getRandomIndexes();
         $items = array();
