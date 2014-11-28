@@ -8,8 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="js/vendors.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
-    <script src="js/formstyler.js"></script>
+    <script>
+        var data = {
+          questions: [
+              {
+                  actors: ["Пьер Ришар","Мишель Буке","Фабрис Греко","Жак Франсуа","Даниэль Секкальди","Шарль Жерар","Мишель Омон","Сьюзи Дайсон","Жерар Жюньо","Мишель Робен"],
+                  answers: ["Неудержимые","Игрушка","Аватар","Черный лебедь"],
+                  hash: "",
+                  correct: null
+              }
+          ]
+        };
+    </script>
     <script src="js/scripts.js"></script>
 
     <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
