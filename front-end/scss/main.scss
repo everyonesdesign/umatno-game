@@ -146,6 +146,43 @@
     }
   }
 
+  &_results {
+    &-table {
+      margin-top: 10px;
+      border-collapse: collapse;
+      box-shadow: 0 0 4px rgba(0,0,0,.4);
+      font-size: 14px;
+      th {
+        background: $black;
+        color: #fff;
+        font-size: 13px;
+        font-weight: normal;
+        white-space: nowrap;
+      }
+      th, td {
+        padding: 10px;
+      }
+    }
+    &-tableAnswerRow {
+      border-top: 1px solid #ccc;
+      background: #ffecec;
+      &.correct {
+        background: #effdf4;
+      }
+    }
+    &-title {
+      padding: 20px 0 10px;
+      font-size: 22px;
+      color: $dimmed;
+      text-align: center;
+    }
+    &-toggle {
+      font-size: 12px;
+      text-align: center;
+      a {color: inherit;}
+    }
+  }
+
   @media (max-width: 600px) {
     &_body-list,
     &_body-answer {
@@ -177,6 +214,9 @@
     }
     &_body-controls {
       padding: 10px;
+    }
+    &_results-table {
+      th {white-space: normal;}
     }
   }
 

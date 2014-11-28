@@ -120,6 +120,42 @@
   display: inline-block;
   width: 100%;
 }
+.umg_results-table {
+  margin-top: 10px;
+  border-collapse: collapse;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  font-size: 14px;
+}
+.umg_results-table th {
+  background: black;
+  color: #fff;
+  font-size: 13px;
+  font-weight: normal;
+  white-space: nowrap;
+}
+.umg_results-table th, .umg_results-table td {
+  padding: 10px;
+}
+.umg_results-tableAnswerRow {
+  border-top: 1px solid #ccc;
+  background: #ffecec;
+}
+.umg_results-tableAnswerRow.correct {
+  background: #effdf4;
+}
+.umg_results-title {
+  padding: 20px 0 10px;
+  font-size: 22px;
+  color: #888888;
+  text-align: center;
+}
+.umg_results-toggle {
+  font-size: 12px;
+  text-align: center;
+}
+.umg_results-toggle a {
+  color: inherit;
+}
 @media (max-width: 600px) {
   .umg_body-list, .umg_body-answer {
     float: none;
@@ -150,6 +186,9 @@
   }
   .umg_body-controls {
     padding: 10px;
+  }
+  .umg_results-table th {
+    white-space: normal;
   }
 }
 @media (max-width: 380px) {

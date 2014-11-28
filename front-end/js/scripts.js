@@ -1,8 +1,4 @@
-$(function() {
-//   $(".umg_body-answerItem input").styler();
-});
-
-var game = angular.module("game", []);
+var game = angular.module("game", ["ngAnimate"]);
 
 game.value("data", umg_data);
 
@@ -31,6 +27,7 @@ game.controller("gameController", ["$scope", "data", function($scope, data) {
                 }
             }
         }
+        $this.finished = true;
     };
 
 }]);
@@ -49,7 +46,17 @@ game.filter("correct", function() {
 });
 
 game.filter("join", function() {
-    return function(input) {
-        return input.join(", ");
+    return function(input, sign) {
+        return input.join(sign);
+    }
+});
+
+game.filter('first', function () {
+    return function(input, number) {
+        var result = [];
+        for (var i= 0; i<number; i++) {
+            result.push(input[i]);
+        }
+        return result;
     }
 });

@@ -10,6 +10,7 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="js/vendors.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script>
         var umg_data = {
           questions: [
@@ -61,7 +62,7 @@
             </div>
         </div>
 
-        <div class="umg_body" ng-repeat="question in gc.questions" ng-show="gc.questionNumber==$index">
+        <div class="umg_body" ng-repeat="question in gc.questions" ng-show="!gc.finished && gc.questionNumber==$index">
             <ul class="umg_body-list">
                 <li class="umg_body-listLi" ng-repeat="actor in question.listItems" title="{{actor}}">{{actor}}</li>
             </ul>
@@ -89,22 +90,24 @@
             </div>
         </div>
 
-        <div class="umg_results">
+        <div class="umg_results" ng-show="gc.finished">
             <div class="umg_results-title">Вы ответили правильно на {{(gc.questions|correct).length}} из {{gc.questions.length}} вопросов</div>
             <div class="umg_results-caption"></div>
-            <table>
+            <div class="umg_results-toggle" ng-hide="gc.showResults">
+                <a href="#" ng-click="gc.showResults=true">Показать результаты</a>
+            </div>
+            <table class="umg_results-table" ng-show="gc.showResults">
                 <tr>
                     <th>Актеры</th>
                     <th>Вы ответили</th>
                     <th>Правильный ответ</th>
                 </tr>
-                <tr ng-repeat="question in gc.questions">
-                    <td>{{question.listItems|join}}</td>
-                    <td>{{question.answers[question.userAnswer]}}</td>
-                    <td>{{question.answers[question.correct]}}</td>
+                <tr class="umg_results-tableAnswerRow" ng-repeat="question in gc.questions" ng-class="{correct: question.correct==question.userAnswer}">
+                    <td>{{question.listItems|first:5|join:", "}}...</td>
+                    <td>«{{question.answers[question.userAnswer]}}»</td>
+                    <td>«{{question.answers[question.correct]}}»</td>
                 </tr>
             </table>
-
         </div>
 
     </div>
