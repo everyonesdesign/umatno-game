@@ -22,7 +22,6 @@ class Umg_game_manager {
     }
 
     public function addVariantsToQuestions($questions) {
-
         foreach ($questions as $key => $question) {
             $id = $question->id;
             $variants = $this->fetchVariantsData($id);
@@ -59,6 +58,15 @@ class Umg_game_manager {
             $item = $this->table->getItem($index+1);
             array_push($questions, $item);
         }
+        $questions = $this->splitListItems($questions);
+        return $questions;
+    }
+
+    public function splitListItems($questions) {
+        foreach($questions as $key=>$question) {
+            $questions[$key]->value = explode( ";", $questions[$key]->value);
+        }
+        array_pop($questions);
         return $questions;
     }
 

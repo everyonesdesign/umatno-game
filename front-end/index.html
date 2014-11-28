@@ -9,39 +9,29 @@
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="js/vendors.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script type="text/javascript" src="http://yastatic.net/share/share.js" charset="utf-8"></script>
     <script>
         var umg_data = {
           questions: [
               {
-                  listItems: ["Пьер Ришар","Мишель Буке","Фабрис Греко","Жак Франсуа","Даниэль Секкальди","Шарль Жерар","Мишель Омон","Сьюзи Дайсон","Жерар Жюньо","Мишель Робен"],
+                  value: ["Пьер Ришар","Мишель Буке","Фабрис Греко","Жак Франсуа","Даниэль Секкальди","Шарль Жерар","Мишель Омон","Сьюзи Дайсон","Жерар Жюньо","Мишель Робен"],
                   answers: ["Неудержимые","Игрушка","Аватар","Черный лебедь"],
-                  hash: "c4060d02f07366c9ee16dc76d2130bb8da0fda62",
-                  correct: false,
-                  userAnswer: undefined
+                  hash: "c4060d02f07366c9ee16dc76d2130bb8da0fda62"
               },
               {
-                  listItems: ["Эдвард Нортон","Брэд Питт","Хелена Бонем Картер","Мит Лоаф","Зэк Гренье","Холт МакКэллани","Джаред Лето","Эйон Бэйли","Ричмонд Аркетт","Дэвид Эндрюс"],
+                  value: ["Эдвард Нортон","Брэд Питт","Хелена Бонем Картер","Мит Лоаф","Зэк Гренье","Холт МакКэллани","Джаред Лето","Эйон Бэйли","Ричмонд Аркетт","Дэвид Эндрюс"],
                   answers: ["Неудержимые","Бойцовский клуб","Аватар","Черный лебедь"],
-                  hash: "f31acb809f99c81652c258821eca659cb1eeeb69",
-                  correct: false,
-                  userAnswer: undefined
+                  hash: "f31acb809f99c81652c258821eca659cb1eeeb69"
               },
               {
-                  listItems: ["Марлон Брандо","Аль Пачино","Джеймс Каан","Роберт Дювалл","Ричард С. Кастеллано","Дайан Китон","Талия Шайр","Джон Казале","Аль Леттьери","Стерлинг Хейден"],
+                  value: ["Марлон Брандо","Аль Пачино","Джеймс Каан","Роберт Дювалл","Ричард С. Кастеллано","Дайан Китон","Талия Шайр","Джон Казале","Аль Леттьери","Стерлинг Хейден"],
                   answers: ["Неудержимые","Игрушка","Аватар","Крестный отец"],
-                  hash: "a8923c00dc64fd2f11f54e4f95adf2ba7121b0a3",
-                  correct: false,
-                  userAnswer: undefined
+                  hash: "a8923c00dc64fd2f11f54e4f95adf2ba7121b0a3"
               },
               {
-                  listItems: ["Майкл Дж. Фокс","Кристофер Ллойд","Лиа Томпсон","Криспин Гловер","Томас Ф. Уилсон","Клодия Уэллс","Марк МакКлюр","Уэнди Джо Спербер","Джордж ДиЧенцо","Фрэнсис Ли МакКейн"],
+                  value: ["Майкл Дж. Фокс","Кристофер Ллойд","Лиа Томпсон","Криспин Гловер","Томас Ф. Уилсон","Клодия Уэллс","Марк МакКлюр","Уэнди Джо Спербер","Джордж ДиЧенцо","Фрэнсис Ли МакКейн"],
                   answers: ["Назад в будущее","Игрушка","Аватар","Черный лебедь"],
-                  hash: "bf9910476dd5ffc3c0b2298eab5ef5b9568262f3",
-                  correct: false,
-                  userAnswer: undefined
+                  hash: "bf9910476dd5ffc3c0b2298eab5ef5b9568262f3"
               }
           ]
         };
@@ -65,7 +55,7 @@
 
         <div class="umg_body" ng-repeat="question in gc.questions" ng-show="!gc.finished && gc.questionNumber==$index">
             <ul class="umg_body-list">
-                <li class="umg_body-listLi" ng-repeat="actor in question.listItems" title="{{actor}}">{{actor}}</li>
+                <li class="umg_body-listLi" ng-repeat="actor in question.value" title="{{actor}}">{{actor}}</li>
             </ul>
             <div class="umg_body-answer">
                 <div class="umg_body-answerCaption">— это актерский состав фильма...</div>
@@ -104,7 +94,7 @@
                     <th>Правильный ответ</th>
                 </tr>
                 <tr class="umg_results-tableAnswerRow" ng-repeat="question in gc.questions" ng-class="{correct: question.correct==question.userAnswer}">
-                    <td>{{question.listItems|first:5|join:", "}}...</td>
+                    <td>{{question.value|first:5|join:", "}}...</td>
                     <td>«{{question.answers[question.userAnswer]}}»</td>
                     <td>«{{question.answers[question.correct]}}»</td>
                 </tr>
