@@ -18,7 +18,7 @@ class Umg_questions_manager {
 
     public function constructQuestions() {
         $questions = $this->getQuestions();
-        $questions = $this->addVariantsToQuestions($questions);
+        $questions = $this->addAnswersToQuestions($questions);
         $questions = $this->addSecrecy($questions);
         return $questions;
     }
@@ -27,10 +27,10 @@ class Umg_questions_manager {
         foreach ($questions as $key => $question) {
             //add hash
             $questions[$key]->hash = sha1($questions[$key]->name);
-            //add name to variants
-            array_push($questions[$key]->variants, $questions[$key]->name);
-            //mix variants
-            shuffle($questions[$key]->variants);
+            //add name to answers
+            array_push($questions[$key]->answers, $questions[$key]->name);
+            //mix answers
+            shuffle($questions[$key]->answers);
             //remote id and name properties
             unset($questions[$key]->id);
             unset($questions[$key]->name);
@@ -38,17 +38,17 @@ class Umg_questions_manager {
         return $questions;
     }
 
-    public function addVariantsToQuestions($questions) {
+    public function addAnswersToQuestions($questions) {
         foreach ($questions as $key => $question) {
             $id = $question->id;
-            $variants = $this->fetchVariantsData($id);
-            $questions[$key]->variants = $variants;
+            $answers = $this->fetchAnswersData($id);
+            $questions[$key]->answers = $answers;
         }
         return $questions;
     }
 
-    public function fetchVariantsData($id) {
-        $variant_ids = $this->getRandomVariantsIds($id);
+    public function fetchAnswersData($id) {
+        $variant_ids = $this->getRandomAnswersIds($id);
         $results = array();
         foreach ($variant_ids as $variant_id) {
             $item = $this->table->getItem($variant_id+1);
@@ -57,12 +57,12 @@ class Umg_questions_manager {
         return $results;
     }
 
-    public function getRandomVariantsIds($id) {
+    public function getRandomAnswersIds($id) {
         $helperArray = array_pad(array(), $this->itemsCount, 0);
         $indexesArray = array_rand($helperArray, 3);
         //if same id recursive call again
         if (in_array($id, $indexesArray)) {
-            return $this->getRandomVariantsIds($id);
+            return $this->getRandomAnswersIds($id);
         } else {
             return $indexesArray;
         }
