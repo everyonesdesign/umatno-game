@@ -25,7 +25,7 @@
                 <label class="umg_body-answerItem" ng-repeat="answer in question.answers" >
                     <input name="answer" type="radio" ng-value="{{$index}}" ng-model="gc.questions[gc.questionNumber].userAnswer">
                     <span class="radio-view"></span>
-                    «{{answer}}»
+                    {{answer}}
                 </label>
             </form>
             <div class="umg_body-controls">
@@ -60,8 +60,8 @@
             </tr>
             <tr class="umg_results-tableAnswerRow" ng-repeat="question in gc.questions" ng-class="{correct: question.correct==question.userAnswer}">
                 <td>{{question.value|first:5|join:", "}}...</td>
-                <td>«{{question.answers[question.userAnswer]}}»</td>
-                <td>«{{question.answers[question.correct]}}»</td>
+                <td>{{question.answers[question.userAnswer]}}</td>
+                <td>{{question.answers[question.correct]}}</td>
             </tr>
         </table>
         <div class="umg_soc">
