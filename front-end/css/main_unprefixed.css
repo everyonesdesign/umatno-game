@@ -4,6 +4,10 @@
   clear: both;
 }
 
+.b-share__handle:first-child {
+  display: none;
+}
+
 .umg_container {
   margin: auto;
   line-height: 1.3;

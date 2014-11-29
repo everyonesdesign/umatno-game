@@ -4,7 +4,8 @@ if (location.protocol!="file:") {
     YaShareInstance = new Ya.share({
         element: 'umg_soc-inner',
         elementStyle: {
-            type: "icon"
+            type: "icon",
+            quickServices: ["vkontakte","facebook","twitter","odnoklassniki","moimir","evernote"]
         }
     });
 }

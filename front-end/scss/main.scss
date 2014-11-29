@@ -4,6 +4,11 @@
   clear: both;
 }
 
+//remove popup
+.b-share__handle:first-child {
+  display: none;
+}
+
 .umg { //prefix our styles
 
   //colors
