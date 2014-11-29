@@ -12,13 +12,20 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            scripts: {
+            css: {
                 files: ['scss/*.scss'],
                 tasks: ['sass', 'autoprefixer'],
                 options: {
                     spawn: false
                 }
-            }
+            }/*,
+            scripts: {
+                files: ['js/*.js'],
+                tasks: ['uglify'],
+                options: {
+                    spawn: false
+                }
+            }*/
         },
         autoprefixer: {
             options: {
@@ -28,14 +35,25 @@ module.exports = function(grunt) {
                 src: 'css/main_unprefixed.css',
                 dest: 'css/main.css'
             }
+        },
+        uglify: {
+            options: {
+                mangle: false
+            },
+            my_target: {
+                files: {
+                    'js/all_scripts.min.js': ['js/vendors.js', 'js/scripts.js']
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-autoprefixer');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('run', ['sass', 'autoprefixer']);
+    grunt.registerTask('run', ['sass', 'autoprefixer'/*, 'uglify'*/]);
 
 };
