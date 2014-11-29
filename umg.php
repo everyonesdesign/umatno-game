@@ -11,17 +11,15 @@ defined('ABSPATH') or die("Only WP plugin");
 
 //adding globals
 global $wpdb;
-global $plugin_path;
-$plugin_path = plugin_dir_path( __FILE__ );
 
 //loading classes
-require_once($plugin_path."classes/Umg_table_manager.php");
-require_once($plugin_path."classes/Umg_file_parser.php");
-require_once($plugin_path."classes/Umg_questions_manager.php");
+require_once(plugin_dir_path( __FILE__ )."classes/Umg_table_manager.php");
+require_once(plugin_dir_path( __FILE__ )."classes/Umg_file_parser.php");
+require_once(plugin_dir_path( __FILE__ )."classes/Umg_questions_manager.php");
 
 //creating instance of table for game 'guess film by actors list'
 $films_table_name = $wpdb->prefix.'umg_films';
-$films_file = $plugin_path.'data/films-data.txt';
+$films_file = plugin_dir_path( __FILE__ ).'data/films-data.txt';
 global $films_table;
 $films_table = new Umg_table_manager($films_table_name, $films_file);
 

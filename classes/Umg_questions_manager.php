@@ -13,7 +13,11 @@ class Umg_questions_manager {
     public function getMarkup() {
         //FIXME: for test
         $questions = $this->constructQuestions();
-        return var_dump($questions);
+        ob_start();
+        require(plugin_dir_path( __FILE__ )."../template.php");
+        $ret = ob_get_contents();
+        ob_end_clean();
+        return $ret;
     }
 
     public function constructQuestions() {

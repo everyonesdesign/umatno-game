@@ -9,8 +9,6 @@ class Umg_file_parser {
     }
 
     public function parse($table) {
-        global $plugin_path;
-
         $file_content = file($this->filename);
         $line_type = 0;
 
