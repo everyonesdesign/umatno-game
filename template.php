@@ -1,34 +1,70 @@
-<?php
-
-?>
-
 <script src="<?php echo plugins_url( 'front-end/js/vendors.js', __FILE__ );?>"></script>
 <script>
     var umg_data = {
-        questions: [
-            {
-                value: ["Пьер Ришар","Мишель Буке","Фабрис Греко","Жак Франсуа","Даниэль Секкальди","Шарль Жерар","Мишель Омон","Сьюзи Дайсон","Жерар Жюньо","Мишель Робен"],
-                answers: ["Неудержимые","Игрушка","Аватар","Черный лебедь"],
-                hash: "c4060d02f07366c9ee16dc76d2130bb8da0fda62"
-            },
-            {
-                value: ["Эдвард Нортон","Брэд Питт","Хелена Бонем Картер","Мит Лоаф","Зэк Гренье","Холт МакКэллани","Джаред Лето","Эйон Бэйли","Ричмонд Аркетт","Дэвид Эндрюс"],
-                answers: ["Неудержимые","Бойцовский клуб","Аватар","Черный лебедь"],
-                hash: "f31acb809f99c81652c258821eca659cb1eeeb69"
-            },
-            {
-                value: ["Марлон Брандо","Аль Пачино","Джеймс Каан","Роберт Дювалл","Ричард С. Кастеллано","Дайан Китон","Талия Шайр","Джон Казале","Аль Леттьери","Стерлинг Хейден"],
-                answers: ["Неудержимые","Игрушка","Аватар","Крестный отец"],
-                hash: "a8923c00dc64fd2f11f54e4f95adf2ba7121b0a3"
-            },
-            {
-                value: ["Майкл Дж. Фокс","Кристофер Ллойд","Лиа Томпсон","Криспин Гловер","Томас Ф. Уилсон","Клодия Уэллс","Марк МакКлюр","Уэнди Джо Спербер","Джордж ДиЧенцо","Фрэнсис Ли МакКейн"],
-                answers: ["Назад в будущее","Игрушка","Аватар","Черный лебедь"],
-                hash: "bf9910476dd5ffc3c0b2298eab5ef5b9568262f3"
-            }
-        ]
+        questions: <?php echo json_encode($questions);?>
     };
 </script>
 <script src="<?php echo plugins_url( 'front-end/js/scripts.js', __FILE__ );?>"></script>
 
-test
+<div class="umg_container container" ng-app="game" ng-controller="gameController as gc">
+
+    <div class="umg_progress" ng-show="!gc.finished">
+        <div class="umg_progress-caption">Вопрос {{gc.questionNumber+1}} из {{gc.questions.length}}</div>
+        <div class="umg_progress-bar">
+            <div class="umg_progress-barInner" ng-style="{width: (gc.questionNumber+1)/gc.questions.length*100+'%'}"></div>
+        </div>
+    </div>
+
+    <div class="umg_body" ng-repeat="question in gc.questions" ng-show="!gc.finished && gc.questionNumber==$index">
+        <ul class="umg_body-list">
+            <li class="umg_body-listLi" ng-repeat="actor in question.value" title="{{actor}}">{{actor}}</li>
+        </ul>
+        <div class="umg_body-answer">
+            <div class="umg_body-answerCaption">— это актерский состав фильма...</div>
+            <form class="umg_body-answerList">
+                <label class="umg_body-answerItem" ng-repeat="answer in question.answers" >
+                    <input name="answer" type="radio" ng-value="{{$index}}" ng-model="gc.questions[gc.questionNumber].userAnswer">«{{answer}}»
+                    <span class="radio-view"></span>
+                </label>
+            </form>
+            <div class="umg_body-controls">
+                <div class="umg_button umg_button--secondary"
+                     ng-class="{'umg_hidden': !gc.questionNumber}"
+                     ng-click="gc.questionNumber=gc.questionNumber-1">← Назад</div>
+                <div class="umg_button"
+                     ng-class="{'umg_button--disabled': gc.questions[gc.questionNumber].userAnswer==undefined}"
+                     ng-hide="gc.questionNumber+1==gc.questions.length"
+                     ng-click="gc.nextStep()">Далее →</div>
+                <div class="umg_button"
+                     ng-class="{'umg_button--disabled': gc.questions[gc.questionNumber].userAnswer==undefined}"
+                     ng-show="gc.questionNumber+1==gc.questions.length"
+                     ng-click="gc.countResults()">Завершить</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="umg_results" ng-show="gc.finished">
+        <div class="umg_results-title">Вы ответили правильно на {{(gc.questions|correct).length}} из {{gc.questions.length}} вопросов</div>
+        <div class="umg_results-caption"></div>
+        <div class="umg_results-toggle" ng-hide="gc.showResults">
+            <a href="#" ng-click="gc.showResults=true">Показать подробные результаты</a>
+        </div>
+        <table class="umg_results-table" ng-show="gc.showResults">
+            <tr>
+                <th>Актеры</th>
+                <th>Вы ответили</th>
+                <th>Правильный ответ</th>
+            </tr>
+            <tr class="umg_results-tableAnswerRow" ng-repeat="question in gc.questions" ng-class="{correct: question.correct==question.userAnswer}">
+                <td>{{question.value|first:5|join:", "}}...</td>
+                <td>«{{question.answers[question.userAnswer]}}»</td>
+                <td>«{{question.answers[question.correct]}}»</td>
+            </tr>
+        </table>
+        <div class="umg_soc">
+            <div class="umg_soc-title">Поделиться с друзьями:</div>
+            <div class="umg_soc-inner" id="umg_soc-inner"></div>
+        </div>
+    </div>
+
+</div>
