@@ -29,14 +29,14 @@
                 </label>
             </form>
             <div class="umg_body-controls">
-                <div class="umg_button umg_button--secondary"
+                <div class="umg_button umg_button--back umg_button--secondary"
                      ng-class="{'umg_hidden': !gc.questionNumber}"
                      ng-click="gc.questionNumber=gc.questionNumber-1">← Назад</div>
-                <div class="umg_button"
+                <div class="umg_button umg_button--front"
                      ng-class="{'umg_button--disabled': gc.questions[gc.questionNumber].userAnswer==undefined}"
                      ng-hide="gc.questionNumber+1==gc.questions.length"
                      ng-click="gc.nextStep()">Далее →</div>
-                <div class="umg_button"
+                <div class="umg_button umg_button--front"
                      ng-class="{'umg_button--disabled': gc.questions[gc.questionNumber].userAnswer==undefined}"
                      ng-show="gc.questionNumber+1==gc.questions.length"
                      ng-click="gc.countResults()">Завершить</div>

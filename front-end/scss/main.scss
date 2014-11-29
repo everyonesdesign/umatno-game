@@ -36,6 +36,7 @@
   }
 
   &_button {
+    position: relative;
     display: inline-block;
     vertical-align: middle;
     padding: 10px 20px;
@@ -287,8 +288,17 @@
 
   @media (max-width: 380px) {
     &_body-controls {
+      padding-left: 0;
+      padding-right: 0;
       .umg_button {
         display: block;
+        $shift: 52px;
+        &--back {
+          top: $shift;
+        }
+        &--front {
+          top: -$shift;
+        }
       }
     }
     &_body-answerItem {

@@ -26,6 +26,7 @@
   visibility: hidden;
 }
 .umg_button {
+  position: relative;
   display: inline-block;
   vertical-align: middle;
   padding: 10px 20px;
@@ -271,8 +272,18 @@
   }
 }
 @media (max-width: 380px) {
+  .umg_body-controls {
+    padding-left: 0;
+    padding-right: 0;
+  }
   .umg_body-controls .umg_button {
     display: block;
+  }
+  .umg_body-controls .umg_button--back {
+    top: 52px;
+  }
+  .umg_body-controls .umg_button--front {
+    top: -52px;
   }
   .umg_body-answerItem {
     float: none;
