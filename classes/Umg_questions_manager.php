@@ -51,22 +51,22 @@ class Umg_questions_manager {
         return $questions;
     }
 
-    public function fetchAnswersData($id) {
-        $variant_ids = $this->getRandomAnswersIds($id);
+    public function fetchAnswersData($db_id) {
+        $variant_ids = $this->getRandomAnswersIds($db_id);
         $results = array();
         foreach ($variant_ids as $variant_id) {
-            $item = $this->table->getItem($variant_id+1);
+            $item = $this->table->getItem($variant_id);
             array_push($results, $item->name);
         }
         return $results;
     }
 
-    public function getRandomAnswersIds($id) {
+    public function getRandomAnswersIds($db_id) {
         $helperArray = array_pad(array(), $this->itemsCount, 0);
         $indexesArray = array_rand($helperArray, 3);
         //if same id recursive call again
-        if (in_array($id, $indexesArray)) {
-            return $this->getRandomAnswersIds($id);
+        if (in_array($db_id-1, $indexesArray)) {
+            return $this->getRandomAnswersIds($db_id);
         } else {
             return $indexesArray;
         }

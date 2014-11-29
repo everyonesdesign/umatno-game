@@ -76,7 +76,7 @@ game.filter("first", function () {
     return function(input, number) {
         var result = [];
         for (var i= 0; i<number; i++) {
-            result.push(input[i]);
+            if (input[i]) result.push(input[i]);
         }
         return result;
     }
