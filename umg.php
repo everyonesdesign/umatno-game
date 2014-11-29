@@ -45,6 +45,19 @@ function umg_parse_data() {
 }
 register_activation_hook( __FILE__, 'umg_parse_data' );
 
+
+/*
+ *
+ * SCRIPTS AND STYLES INCLUDES
+ *
+ */
+
+function umg_enqueue_files() {
+    wp_enqueue_script( 'yandex_share','http://yastatic.net/share/share.js');
+    wp_enqueue_style( 'umg_main_style', plugins_url( 'front-end/css/main.css', __FILE__ ));
+}
+add_action('wp_enqueue_scripts', 'umg_enqueue_files');
+
 /*
  *
  * SHORTCODES
@@ -62,6 +75,7 @@ function umg_activate_game($attrs) {
     return $markup;
 }
 add_shortcode('game', 'umg_activate_game');
+
 
 
 
