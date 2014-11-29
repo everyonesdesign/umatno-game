@@ -17,7 +17,7 @@
 
     <div class="umg_body" ng-repeat="question in gc.questions" ng-show="!gc.finished && gc.questionNumber==$index">
         <ul class="umg_body-list">
-            <li class="umg_body-listLi" ng-repeat="actor in question.value" title="{{actor}}">{{actor}}</li>
+            <li class="umg_body-listLi" ng-repeat="actor in (question.value|first:10)" title="{{actor}}">{{actor}}</li>
         </ul>
         <div class="umg_body-answer">
             <div class="umg_body-answerCaption">— это актерский состав фильма...</div>
@@ -47,8 +47,10 @@
     <div class="umg_results" ng-show="gc.finished">
         <div class="umg_results-title">Вы ответили правильно на {{(gc.questions|correct).length}} из {{gc.questions.length}} вопросов</div>
         <div class="umg_results-caption"></div>
-        <div class="umg_results-toggle" ng-hide="gc.showResults">
-            <a href="#" ng-click="gc.showResults=true">Показать подробные результаты</a>
+        <div class="umg_results-toggle">
+            <div class="umg_button" onclick="location.reload()">Сыграть еще раз</div>
+            <a ng-click="gc.showResults=true" ng-hide="gc.showResults">Показать подробные результаты</a>
+            <a ng-click="gc.showResults=false" ng-show="gc.showResults">Скрыть подробные результаты</a>
         </div>
         <table class="umg_results-table" ng-show="gc.showResults">
             <tr>

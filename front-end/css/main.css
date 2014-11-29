@@ -7,6 +7,7 @@
 .umg_container {
   margin: auto;
   line-height: 1.3;
+  padding-bottom: 40px;
 }
 .umg_container input[type="radio"] {
   display: none;
@@ -46,7 +47,7 @@
 }
 .umg_button--disabled {
   background: #ddd !important;
-  cursor: not-allowed;
+  cursor: default !important;
 }
 .umg_progress {
   height: 60px;
@@ -79,7 +80,6 @@
   opacity: 1;
   -webkit-transition-duration: .6s;
           transition-duration: .6s;
-  padding-bottom: 40px;
 }
 .umg_body.ng-hide {
   top: 20px;
@@ -173,7 +173,7 @@
   opacity: 0;
 }
 .umg_results-table {
-  margin-top: 10px;
+  margin-top: 20px;
   border-collapse: collapse;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
   font-size: 14px;
@@ -208,14 +208,19 @@
   text-align: center;
 }
 .umg_results-toggle {
+  margin-bottom: 10px;
   font-size: 12px;
   text-align: center;
 }
 .umg_results-toggle a {
-  color: inherit;
+  color: inherit !important;
+  cursor: pointer;
+}
+.umg_results-toggle a, .umg_results-toggle .umg_button {
+  margin: 0 5px;
 }
 .umg_soc {
-  padding-top: 20px;
+  margin-top: 20px;
   text-align: center;
   font-size: 12px;
 }
@@ -251,8 +256,18 @@
   .umg_body-controls {
     padding: 10px;
   }
+  .umg_results-table {
+    margin-top: 6px;
+  }
   .umg_results-table th {
     white-space: normal;
+  }
+  .umg_results-toggle a, .umg_results-toggle .umg_button {
+    margin: 0;
+  }
+  .umg_results-toggle .umg_button {
+    display: block;
+    margin-bottom: 10px;
   }
 }
 @media (max-width: 380px) {
