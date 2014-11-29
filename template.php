@@ -23,8 +23,9 @@
             <div class="umg_body-answerCaption">— это актерский состав фильма...</div>
             <form class="umg_body-answerList">
                 <label class="umg_body-answerItem" ng-repeat="answer in question.answers" >
-                    <input name="answer" type="radio" ng-value="{{$index}}" ng-model="gc.questions[gc.questionNumber].userAnswer">«{{answer}}»
+                    <input name="answer" type="radio" ng-value="{{$index}}" ng-model="gc.questions[gc.questionNumber].userAnswer">
                     <span class="radio-view"></span>
+                    «{{answer}}»
                 </label>
             </form>
             <div class="umg_body-controls">

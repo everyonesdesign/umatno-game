@@ -79,6 +79,7 @@
   opacity: 1;
   -webkit-transition-duration: .6s;
           transition-duration: .6s;
+  padding-bottom: 40px;
 }
 .umg_body.ng-hide {
   top: 20px;

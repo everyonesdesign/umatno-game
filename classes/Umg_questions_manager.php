@@ -87,7 +87,6 @@ class Umg_questions_manager {
         foreach($questions as $key=>$question) {
             $questions[$key]->value = explode( ";", $questions[$key]->value);
         }
-        array_pop($questions);
         return $questions;
     }
 

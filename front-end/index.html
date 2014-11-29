@@ -55,14 +55,14 @@
             </div>
         </div>
 
-        <div class="umg_body" ng-repeat="question in gc.questions" ng-show="!gc.finished && gc.questionNumber==$index">
+        <div class="umg_body" ng-repeat="question in gc.questions track by $index" ng-show="!gc.finished && gc.questionNumber==$index">
             <ul class="umg_body-list">
-                <li class="umg_body-listLi" ng-repeat="actor in question.value" title="{{actor}}">{{actor}}</li>
+                <li class="umg_body-listLi" ng-repeat="actor in question.value track by $index" title="{{actor}}">{{actor}}</li>
             </ul>
             <div class="umg_body-answer">
                 <div class="umg_body-answerCaption">— это актерский состав фильма...</div>
                 <form class="umg_body-answerList">
-                    <label class="umg_body-answerItem" ng-repeat="answer in question.answers" >
+                    <label class="umg_body-answerItem" ng-repeat="answer in question.answers track by $index" >
                         <input name="answer" type="radio" ng-value="{{$index}}" ng-model="gc.questions[gc.questionNumber].userAnswer">«{{answer}}»
                         <span class="radio-view"></span>
                     </label>
@@ -95,7 +95,7 @@
                     <th>Вы ответили</th>
                     <th>Правильный ответ</th>
                 </tr>
-                <tr class="umg_results-tableAnswerRow" ng-repeat="question in gc.questions" ng-class="{correct: question.correct==question.userAnswer}">
+                <tr class="umg_results-tableAnswerRow" ng-repeat="question in gc.questions track by $index" ng-class="{correct: question.correct==question.userAnswer}">
                     <td>{{question.value|first:5|join:", "}}...</td>
                     <td>«{{question.answers[question.userAnswer]}}»</td>
                     <td>«{{question.answers[question.correct]}}»</td>
