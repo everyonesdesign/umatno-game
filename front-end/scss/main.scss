@@ -18,6 +18,10 @@
   $black: #000;
   $lightBorder: #eee;
 
+  //media widths
+  $widthTablet: 600px;
+  $widthPhone: 380px;
+
   &_container {
     margin: auto;
     line-height: 1.3;
@@ -106,6 +110,7 @@
         top: -20px;
         left: -20px;
         transition-duration: 0;
+
       }
       .umg_body-answer {
         opacity: 0;
@@ -125,6 +130,12 @@
       box-sizing: border-box;
       box-shadow: 0 0 3px rgba(0,0,0,.4);
       transition-duration: .6s;
+      @media (max-width: $widthTablet) {
+        float: none;
+        left: 0 !important;
+        width: auto;
+        overflow: hidden;
+      }
     }
     &-listLi {
       padding: 4px 10px;
@@ -135,6 +146,11 @@
       max-width: 100%;
       box-sizing: border-box;
       font-size: 14px;
+      @media (max-width: $widthTablet) {
+        float: left;
+        width: 50%;
+        border: none;
+      }
       &:first-child {
         border-top: none;
       }
@@ -157,14 +173,27 @@
       padding-left: 40px;
       padding-top: 20px;
       box-sizing: border-box;
+      @media (max-width: $widthTablet) {
+        float: none;
+        left: 0 !important;
+        width: auto;
+        padding: 0;
+        overflow: hidden;
+      }
     }
     &-answerCaption {
       font-size: 14px;
       color: $dimmed;
+      @media (max-width: $widthTablet) {
+        display: none;
+      }
     }
     &-answerList {
       @extend %clearfix;
       margin: 20px 0;
+      @media (max-width: $widthTablet) {
+        margin-bottom: 10px;
+      }
     }
     &-answerItem {
        display: block;
@@ -172,6 +201,19 @@
        padding-left: 42px;
        font-size: 14px;
        box-sizing: border-box;
+       @media (max-width: $widthTablet) {
+         display: inline-block;
+         vertical-align: top;
+         width: 50%;
+         margin: 8px 0;
+         padding: 0 10px 0 46px;
+       }
+       @media (max-width: $widthPhone) {
+         display: block;
+         width: auto;
+         padding-top: 4px;
+         padding-bottom: 4px;
+       }
     }
     &-controls {
       text-align: justify;
@@ -182,6 +224,23 @@
         content: "";
         display: inline-block;
         width: 100%;
+      }
+      @media (max-width: $widthTablet) {
+        padding: 10px;
+      }
+      @media (max-width: $widthPhone) {
+        padding-left: 0;
+        padding-right: 0;
+        .umg_button {
+          display: block;
+          $shift: 52px;
+          &--back {
+            top: $shift;
+          }
+          &--front {
+            top: -$shift;
+          }
+        }
       }
     }
   }
@@ -212,6 +271,10 @@
       th, td {
         padding: 10px;
       }
+      @media (max-width: $widthTablet) {
+        margin-top: 6px;
+        th {white-space: normal;}
+      }
     }
     &-tableAnswerRow {
       border-top: 1px solid #ccc;
@@ -234,7 +297,19 @@
         color: inherit !important;
         cursor: pointer;
       }
-      a, .umg_button {margin: 0 5px;}
+      a, .umg_button {
+        margin: 0 5px;
+      }
+      @media (max-width: $widthTablet) {
+        & a,
+        & .umg_button {
+          margin: 0;
+        }
+        & .umg_button {
+          display: block;
+          margin-bottom: 10px;
+        }
+      }
     }
   }
 
@@ -243,78 +318,6 @@
     text-align: center;
     font-size: 12px;
   }
-
-  @media (max-width: 600px) {
-    &_body-list,
-    &_body-answer {
-      float: none;
-      left: 0 !important;
-      width: auto;
-      overflow: hidden;
-    }
-    &_body-listLi {
-      float: left;
-      width: 50%;
-      border: none;
-//      font-size: 14px;
-    }
-    &_body-answerList{
-      margin-bottom: 10px;
-    }
-    &_body-answerItem {
-      float: left;
-      width: 50%;
-//      font-size: 14px;
-      margin: 8px 0;
-      padding: 0 10px 0 46px;
-    }
-    &_body-answerCaption {
-      display: none;
-    }
-    &_body-answer {
-      padding: 0;
-    }
-    &_body-controls {
-      padding: 10px;
-    }
-    &_results-table {
-      margin-top: 6px;
-      th {white-space: normal;}
-    }
-    &_results-toggle a,
-    &_results-toggle .umg_button {
-      margin: 0;
-    }
-    &_results-toggle .umg_button {
-      display: block;
-      margin-bottom: 10px;
-    }
-  }
-
-  @media (max-width: 380px) {
-    &_body-controls {
-      padding-left: 0;
-      padding-right: 0;
-      .umg_button {
-        display: block;
-        $shift: 52px;
-        &--back {
-          top: $shift;
-        }
-        &--front {
-          top: -$shift;
-        }
-      }
-    }
-    &_body-answerItem {
-      float: none;
-      width: auto;
-      padding-top: 4px;
-      padding-bottom: 4px;
-    }
-  }
-
-
 
 }
 
