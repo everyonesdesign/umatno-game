@@ -127,7 +127,7 @@
   text-overflow: ellipsis;
   max-width: 100%;
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 14px;
 }
 .umg_body-listLi:first-child {
   border-top: none;
@@ -145,7 +145,7 @@
   box-sizing: border-box;
 }
 .umg_body-answerCaption {
-  font-size: 16px;
+  font-size: 14px;
   color: #888888;
 }
 .umg_body-answerList {
@@ -155,7 +155,7 @@
   display: block;
   margin: 14px 0;
   padding-left: 42px;
-  font-size: 16px;
+  font-size: 14px;
   box-sizing: border-box;
 }
 .umg_body-controls {
@@ -240,7 +240,6 @@
     float: left;
     width: 50%;
     border: none;
-    font-size: 14px;
   }
   .umg_body-answerList {
     margin-bottom: 10px;
@@ -248,7 +247,6 @@
   .umg_body-answerItem {
     float: left;
     width: 50%;
-    font-size: 14px;
     margin: 8px 0;
     padding: 0 10px 0 46px;
   }

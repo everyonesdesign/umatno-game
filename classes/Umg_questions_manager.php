@@ -54,7 +54,7 @@ class Umg_questions_manager {
         $variant_ids = $this->getRandomAnswersIds($db_id);
         $results = array();
         foreach ($variant_ids as $variant_id) {
-            $item = $this->table->getItem($variant_id);
+            $item = $this->table->getItem($variant_id+1);
             array_push($results, $item->name);
         }
         return $results;
