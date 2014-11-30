@@ -14,7 +14,7 @@ class Umg_questions_manager {
         //FIXME: for test
         $questions = $this->constructQuestions();
         ob_start();
-        require(plugin_dir_path( __FILE__ )."../template.php");
+        require(plugin_dir_path( __FILE__ )."../films_template.php");
         $ret = ob_get_contents();
         ob_end_clean();
         return $ret;
