@@ -19,8 +19,8 @@
   $lightBorder: #eee;
 
   //media widths
-  $widthTablet: 600px;
-  $widthPhone: 380px;
+  $widthTablet: 1024px;
+  $widthPhone: 768px;
 
   &_container {
     margin: auto;
@@ -125,7 +125,7 @@
       z-index: 1;
       float: left;
       width: 40%;
-      margin: 0;
+      margin: 0 !important;
       padding: 20px 10px;
       box-sizing: border-box;
       box-shadow: 0 0 3px rgba(0,0,0,.4);
@@ -144,6 +144,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 100%;
+      margin: 0 !important;
       box-sizing: border-box;
       font-size: 14px;
       @media (max-width: $widthTablet) {

@@ -112,14 +112,14 @@
   z-index: 1;
   float: left;
   width: 40%;
-  margin: 0;
+  margin: 0 !important;
   padding: 20px 10px;
   box-sizing: border-box;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
   -webkit-transition-duration: .6s;
           transition-duration: .6s;
 }
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .umg_body-list {
     float: none;
     left: 0 !important;
@@ -134,10 +134,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+  margin: 0 !important;
   box-sizing: border-box;
   font-size: 14px;
 }
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .umg_body-listLi {
     float: left;
     width: 50%;
@@ -159,7 +160,7 @@
   padding-top: 20px;
   box-sizing: border-box;
 }
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .umg_body-answer {
     float: none;
     left: 0 !important;
@@ -172,7 +173,7 @@
   font-size: 14px;
   color: #888888;
 }
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .umg_body-answerCaption {
     display: none;
   }
@@ -180,7 +181,7 @@
 .umg_body-answerList {
   margin: 20px 0;
 }
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .umg_body-answerList {
     margin-bottom: 10px;
   }
@@ -192,7 +193,7 @@
   font-size: 14px;
   box-sizing: border-box;
 }
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .umg_body-answerItem {
     display: inline-block;
     vertical-align: top;
@@ -201,7 +202,7 @@
     padding: 0 10px 0 46px;
   }
 }
-@media (max-width: 380px) {
+@media (max-width: 768px) {
   .umg_body-answerItem {
     display: block;
     width: auto;
@@ -220,12 +221,12 @@
   display: inline-block;
   width: 100%;
 }
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .umg_body-controls {
     padding: 10px;
   }
 }
-@media (max-width: 380px) {
+@media (max-width: 768px) {
   .umg_body-controls {
     padding-left: 0;
     padding-right: 0;
@@ -270,7 +271,7 @@
 .umg_results-table th, .umg_results-table td {
   padding: 10px;
 }
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .umg_results-table {
     margin-top: 6px;
   }
@@ -303,7 +304,7 @@
 .umg_results-toggle a, .umg_results-toggle .umg_button {
   margin: 0 5px;
 }
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
   .umg_results-toggle a, .umg_results-toggle .umg_button {
     margin: 0;
   }
