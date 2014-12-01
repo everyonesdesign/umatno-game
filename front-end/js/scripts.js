@@ -27,8 +27,6 @@ game.value("resultsPhrases", [
     "Поздравляем! Вы - настоящий знаток фильмов" //10
 ]);
 
-game.controller("gameController", ["$scope", "data", "correctFilter", function($scope, data, correctFilter) {
-
 game.controller("gameController", ["$scope", "data", "correctFilter", "resultsPhrases", function($scope, data, correctFilter, resultsPhrases) {
 
     var $this = this;
