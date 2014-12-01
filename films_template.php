@@ -6,7 +6,7 @@
 </script>
 <script src="<?php echo plugins_url( 'front-end/js/scripts.js', __FILE__ );?>"></script>
 
-<div class="umg_container container" ng-app="game" ng-controller="gameController as gc">
+<div class="umg_container container" ng-class="{loaded: true}" ng-app="game" ng-controller="gameController as gc">
 
     <div class="umg_progress" ng-show="!gc.finished">
         <div class="umg_progress-caption">Вопрос {{gc.questionNumber+1}} из {{gc.questions.length}}</div>
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <div class="umg_results" ng-show="gc.finished">
+    <div class="umg_results" ng-class="{shown: gc.finished}" ng-show="gc.finished">
         <div class="umg_results-title">Вы ответили правильно на {{(gc.questions|correct).length}} из {{gc.questions.length}} вопросов</div>
         <div class="umg_results-caption"></div>
         <div class="umg_results-toggle">
@@ -71,3 +71,5 @@
     </div>
 
 </div>
+
+<div class="umg_preloader"></div>

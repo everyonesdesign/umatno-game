@@ -4,14 +4,29 @@
   clear: both;
 }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 .b-share__handle:first-child {
   display: none;
 }
 
 .umg_container {
+  opacity: 0;
+  height: 0;
+  -webkit-transition: .2s opacity;
+          transition: .2s opacity;
   margin: auto;
   line-height: 1.3;
   padding-bottom: 40px;
+}
+.umg_container.loaded {
+  opacity: 1;
+  height: auto;
+}
+.umg_container.loaded + .umg_preloader {
+  display: none;
 }
 .umg_container input[type="radio"] {
   display: none;
@@ -242,12 +257,12 @@
   }
 }
 .umg_results {
-  opacity: 1;
+  opacity: 0;
   -webkit-transition-duration: .6s;
           transition-duration: .6s;
 }
-.umg_results.ng-hide {
-  opacity: 0;
+.umg_results.shown {
+  opacity: 1;
 }
 .umg_results-table {
   margin-top: 20px;
@@ -261,15 +276,16 @@
 .umg_results-table.ng-hide {
   opacity: 0;
 }
+.umg_results-table th, .umg_results-table td {
+  padding: 10px;
+  background: none !important;
+}
 .umg_results-table th {
-  background: black;
+  background: black !important;
   color: #fff;
   font-size: 13px;
   font-weight: normal;
   white-space: nowrap;
-}
-.umg_results-table th, .umg_results-table td {
-  padding: 10px;
 }
 @media (max-width: 1024px) {
   .umg_results-table {
@@ -281,10 +297,10 @@
 }
 .umg_results-tableAnswerRow {
   border-top: 1px solid #ccc;
-  background: #ffecec;
+  background: #ffecec !important;
 }
 .umg_results-tableAnswerRow.correct {
-  background: #effdf4;
+  background: #effdf4 !important;
 }
 .umg_results-title {
   padding: 20px 0 10px;
@@ -300,6 +316,8 @@
 .umg_results-toggle a {
   color: inherit !important;
   cursor: pointer;
+  -webkit-transition-duration: 0 !important;
+          transition-duration: 0 !important;
 }
 .umg_results-toggle a, .umg_results-toggle .umg_button {
   margin: 0 5px;
@@ -317,4 +335,9 @@
   margin-top: 20px;
   text-align: center;
   font-size: 12px;
+}
+
+.umg_preloader {
+  height: 32px;
+  background: center 0 no-repeat url("../img/preloader.gif");
 }
