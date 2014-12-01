@@ -331,6 +331,12 @@
     margin-bottom: 10px;
   }
 }
+.umg_results-caption {
+  margin: 0 0 16px;
+  text-align: center;
+  font-size: 13px;
+  color: #888888;
+}
 .umg_soc {
   margin-top: 20px;
   text-align: center;

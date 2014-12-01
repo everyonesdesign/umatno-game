@@ -46,7 +46,7 @@
 
     <div class="umg_results" ng-class="{shown: gc.finished}" ng-show="gc.finished">
         <div class="umg_results-title">Вы ответили правильно на {{(gc.questions|correct).length}} из {{gc.questions.length}} вопросов</div>
-        <div class="umg_results-caption"></div>
+        <div class="umg_results-caption">{{gc.resultsPhrases[(gc.questions|correct).length]}}</div>
         <div class="umg_results-toggle">
             <div class="umg_button" onclick="location.reload()">Сыграть еще раз</div>
             <a ng-click="gc.showResults=true" ng-hide="gc.showResults">Показать подробные результаты</a>

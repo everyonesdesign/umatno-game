@@ -13,13 +13,29 @@ if (location.protocol!="file:") {
 var game = angular.module("game", ["ngAnimate"]);
 
 game.value("data", umg_data);
+game.value("resultsPhrases", [
+    "Попробуйте сыграть еще раз, в следующий раз получится лучше", //0
+    "Не повезло - попробуйте еще раз", //1
+    "Попробуйте сыграть еще раз", //2
+    "Посмотрите еще несколько фильмов - и все получится", //3
+    "Все впереди - попробуйте еще раз", //4
+    "Неплохой результат, но вы способны на большее", //5
+    "Вы обладаете неплохими знаниями фильмов. Может, в следующий раз получится лучше?", //6
+    "Достойный результат: вы хорошо знаете актеров и фильмы", //7
+    "Прекрасно - вы знаете очень многое о кино", //8
+    "Великолепный результат - вы знаете о кино почти все", //9
+    "Поздравляем! Вы - настоящий знаток фильмов" //10
+]);
 
 game.controller("gameController", ["$scope", "data", "correctFilter", function($scope, data, correctFilter) {
+
+game.controller("gameController", ["$scope", "data", "correctFilter", "resultsPhrases", function($scope, data, correctFilter, resultsPhrases) {
 
     var $this = this;
     $this.questionNumber = 0;
     $this.questions = data.questions;
     $this.results = {};
+    $this.resultsPhrases = resultsPhrases;
 
     $this.nextStep = function() {
         if ($this.questions[$this.questionNumber].userAnswer==undefined) {
